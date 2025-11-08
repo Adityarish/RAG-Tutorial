@@ -7,3 +7,5 @@ ipykernel
 sentence-transformers
 faiss-cpu # vector space
 chromadb #vector space
+langchain-groq
+python-dotenv
