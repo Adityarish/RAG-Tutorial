@@ -1,8 +1,9 @@
-from typing import List, Any, Union
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.schema import Document
+from typing import List, Union
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from sentence_transformers import SentenceTransformer
 import numpy as np
+from src.data_loader import load_all_documents
 
 
 class EmbeddingPipeline:
@@ -17,7 +18,11 @@ class EmbeddingPipeline:
         Splits text documents into smaller chunks suitable for embedding.
         Accepts either plain strings or LangChain Document objects.
         """
-        # Ensure documents are LangChain Document objects
+        if not documents:
+            print("[WARN] No documents provided for chunking.")
+            return []
+
+        # Convert string inputs to LangChain Document objects
         if isinstance(documents[0], str):
             documents = [Document(page_content=doc) for doc in documents]
 
@@ -36,9 +41,12 @@ class EmbeddingPipeline:
         """
         Generates embeddings for each text chunk.
         """
+        if not chunks:
+            print("[WARN] No chunks provided for embedding.")
+            return np.array([])
+
         texts = [chunk.page_content for chunk in chunks]
         print(f"[INFO] Generating embeddings for {len(texts)} chunks...")
         embeddings = self.model.encode(texts, show_progress_bar=True)
-        embeddings = np.array(embeddings)
         print(f"[INFO] Embeddings shape: {embeddings.shape}")
         return embeddings

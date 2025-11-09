@@ -1,12 +1,16 @@
 from src.data_loader import load_all_documents
-from src.embedding import EmbeddingPipeline
-# from src.vectorstore import FaissVectorStore
-# from src.search import RAGsearch
+from src.vectorstore import FaissVectorStore
+from src.search import RAGsearch
 
 if __name__ == "__main__":
     docs = load_all_documents("data")
-    pipe = EmbeddingPipeline()
-    chunks = pipe.chunk_documents(docs)
-    chunkvectors = pipe.embed_chunks(chunks)
-    print(chunkvectors)
-    print(chunkvectors)
+    store = FaissVectorStore()
+    store.build_from_documents(docs)
+    store.load()
+    # print(store.query("What is my CGPA till 4th sem?", top_k = 3))
+
+    rag_search = RAGsearch()
+    query = "What are the skills i have related to database?"
+    summary = rag_search.search_and_summarize(query, top_k = 3)
+    print("Summary: ", summary)
+    

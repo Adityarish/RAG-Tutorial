@@ -4,9 +4,9 @@ langchain-community
 pypdf
 pymupdf
 ipykernel
-sentence-transformers==2.6.1
-transformers<5
-faiss-cpu # vector space
-chromadb #vector space
+sentence-transformers
+transformers
+faiss-cpu
+chromadb 
 langchain-groq
 python-dotenv
