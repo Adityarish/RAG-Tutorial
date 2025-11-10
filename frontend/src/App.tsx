@@ -44,20 +44,21 @@ function App() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
       padding: '2rem',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
       <div style={{
         maxWidth: '800px',
         margin: '0 auto',
-        background: 'rgba(202, 251, 250, 0.95)',
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
         borderRadius: '24px',
         padding: '3rem',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
+        border: '1px solid #333'
       }}>
         <h1 style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #ff0000 0%, #cc0000 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           fontSize: '3rem',
@@ -71,7 +72,7 @@ function App() {
             display: 'block',
             marginBottom: '0.75rem',
             fontWeight: '600',
-            color: '#4a5568',
+            color: '#999',
             fontSize: '0.95rem'
           }}>Upload a document (PDF, TXT, CSV, DOCX, JSON, XLS/XLSX)</label>
           <input
@@ -82,18 +83,20 @@ function App() {
             style={{
               width: '100%',
               padding: '0.75rem',
-              border: '2px solid #5d5d5dff',
+              border: '2px solid #333',
               borderRadius: '12px',
               fontSize: '1rem',
               transition: 'all 0.3s',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              background: '#1a1a1a',
+              color: '#ccc'
             }}
           />
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '2rem' }}>
           <button onClick={handleUpload} disabled={!file} style={{
-            background: file ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#cbd5e0',
-            color: 'white',
+            background: file ? 'linear-gradient(135deg, #ff0000 0%, #8b0000 100%)' : '#2d2d2d',
+            color: file ? 'white' : '#666',
             border: 'none',
             padding: '0.875rem 2rem',
             borderRadius: '12px',
@@ -101,14 +104,14 @@ function App() {
             fontWeight: '600',
             cursor: file ? 'pointer' : 'not-allowed',
             transition: 'all 0.3s',
-            boxShadow: file ? '0 4px 15px rgba(84, 113, 241, 0.4)' : 'none',
+            boxShadow: file ? '0 4px 15px rgba(255, 0, 0, 0.4)' : 'none',
             transform: 'translateY(0)'
           }} onMouseEnter={(e) => {
             if (file) e.currentTarget.style.transform = 'translateY(-2px)';
           }} onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
           }}>Upload</button>
-          <span style={{ color: '#4a5568', fontSize: '0.9rem' }}>{uploadStatus}</span>
+          <span style={{ color: '#999', fontSize: '0.9rem' }}>{uploadStatus}</span>
         </div>
 
         <div style={{ marginBottom: '2rem' }}>
@@ -116,7 +119,7 @@ function App() {
             display: 'block',
             marginBottom: '0.75rem',
             fontWeight: '600',
-            color: '#4a5568',
+            color: '#999',
             fontSize: '0.95rem'
           }}>Enter your query</label>
           <input
@@ -128,19 +131,21 @@ function App() {
             style={{
               width: '100%',
               padding: '1rem',
-              border: '2px solid #565758ff',
+              border: '2px solid #333',
               borderRadius: '12px',
               fontSize: '1rem',
               transition: 'all 0.3s',
-              outline: 'none'
+              outline: 'none',
+              background: '#1a1a1a',
+              color: '#fff'
             }}
-            onFocus={(e) => e.currentTarget.style.borderColor = '#667eea'}
-            onBlur={(e) => e.currentTarget.style.borderColor = '#e2e8f0'}
+            onFocus={(e) => e.currentTarget.style.borderColor = '#ff0000'}
+            onBlur={(e) => e.currentTarget.style.borderColor = '#333'}
           />
         </div>
         <div style={{ marginBottom: '2rem' }}>
           <button onClick={handleSearch} style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'linear-gradient(135deg, #ff0000 0%, #8b0000 100%)',
             color: 'white',
             border: 'none',
             padding: '0.875rem 2rem',
@@ -149,36 +154,36 @@ function App() {
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s',
-            boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
+            boxShadow: '0 4px 15px rgba(255, 0, 0, 0.4)',
             transform: 'translateY(0)',
             width: '100%'
           }} onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.5)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 0, 0, 0.5)';
           }} onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 0, 0, 0.4)';
           }}>Search</button>
         </div>
 
         <div style={{
-          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
+          background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)',
           borderRadius: '16px',
           padding: '1.5rem',
-          border: '2px solid rgba(102, 126, 234, 0.2)'
+          border: '2px solid #333'
         }}>
           <div style={{
             fontWeight: '700',
             marginBottom: '1rem',
             fontSize: '1.25rem',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'linear-gradient(135deg, #ff0000 0%, #cc0000 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>Summary</div>
           <div style={{
             whiteSpace: 'pre-wrap',
             overflowWrap: 'anywhere',
-            color: '#2d3748',
+            color: '#ccc',
             lineHeight: '1.7',
             fontSize: '1rem'
           }}>{summary || 'No summary yet. Try a search.'}</div>
