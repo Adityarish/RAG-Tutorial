@@ -1,3 +1,5 @@
+flask
+flask-cors
 langchain
 langchain-core
 langchain-community

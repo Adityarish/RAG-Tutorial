@@ -9,14 +9,16 @@ from langchain_community.document_loaders import (
     Docx2txtLoader,
     JSONLoader,
 )
+import dotenv
 from langchain_community.document_loaders.excel import UnstructuredExcelLoader
 from src.data_loader import load_all_documents
 from src.vectorstore import FaissVectorStore
 from src.search import RAGsearch
 import os
 
+
 app = Flask(__name__)
-CORS(app)  
+CORS(app, origins="*")  
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
@@ -112,4 +114,4 @@ def upload_file():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=os.getenv("PORT", 5173))

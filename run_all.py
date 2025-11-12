@@ -10,7 +10,7 @@ FRONTEND_DIR = os.path.join(os.getcwd(), "frontend")
 
 # Define commands
 BACKEND_CMD = ["python", "app.py"]
-FRONTEND_CMD = ["npm", "start"]
+FRONTEND_CMD = ["npm", "run", "dev", "--", "--host"]
 
 # Track processes
 processes = []
@@ -33,9 +33,6 @@ def main():
         processes.append(frontend_proc)
 
         print("\n✅ Both servers are running!")
-        print("Backend: http://localhost:5001")
-        print("Frontend: http://localhost:3000\n")
-
         # Keep script alive until interrupted
         while True:
             time.sleep(1)
